@@ -1,0 +1,17 @@
+
+
+
+
+
+
+my_send:
+
+This function takes four parameters - a pointer to a MyTCP_Socket structure (sock), a pointer to the data to be sent (buf), the length of the data to be sent (len), and some flags. The function first checks if the socket is closed. If it is, it returns -1 to indicate an error. Then, it checks if the length of the message to be sent is greater than the maximum allowed length. If it is, it returns -1. Next, the function checks if the send buffer is full. If it is, it returns -1.
+
+If all the above checks pass, the function creates a new Message structure, copies the data to be sent into the data field of the structure, sets the length field to the length of the data, and adds this Message structure to the send buffer of the socket. Finally, the function returns the length of the message sent.
+
+my_recv:
+
+This function also takes four parameters - a pointer to a MyTCP_Socket structure (sock), a pointer to a buffer where the received data will be stored (buf), the maximum length of the data that can be received (len), and some flags. The function first checks if the socket is closed. If it is, it returns -1 to indicate an error. Then, it checks if the receive buffer is empty. If it is, it returns -1.
+
+If the receive buffer is not empty, the function retrieves the first Message structure from the receive buffer and checks if the length of the message is smaller than the length of the buffer provided. If it is, it returns -1. Otherwise, it copies the data from the data field of the Message structure to the buffer provided, updates the front pointer of the receive buffer, and returns the length of the message received.
